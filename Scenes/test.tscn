@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://w3xkta40fn1o"]
+
+[ext_resource type="PackedScene" uid="uid://kwokyvrce4jv" path="res://Instances/charlos.tscn" id="1_knw8j"]
+[ext_resource type="Script" path="res://Scripts/charlos.gd" id="2_33jkj"]
+[ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="3_uiddj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_askw0"]
+size = Vector2(128, 128)
+
+[node name="Test" type="Node2D"]
+
+[node name="Charlos" parent="." instance=ExtResource("1_knw8j")]
+position = Vector2(243, 196)
+script = ExtResource("2_33jkj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(531, 278)
+scale = Vector2(9.075, 0.435)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("3_uiddj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_askw0")
