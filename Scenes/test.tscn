@@ -1,10 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://w3xkta40fn1o"]
+[gd_scene load_steps=11 format=3 uid="uid://w3xkta40fn1o"]
 
 [ext_resource type="PackedScene" uid="uid://kwokyvrce4jv" path="res://Instances/charlos.tscn" id="1_knw8j"]
 [ext_resource type="Script" path="res://Scripts/charlos.gd" id="2_33jkj"]
 [ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="3_uiddj"]
 [ext_resource type="Shader" path="res://Shaders/SpookyVignette.gdshader" id="4_8bnck"]
-[ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://tilingvoronoi_2.png" id="5_8ngil"]
+[ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://Shaders/tilingvoronoi_2.png" id="5_i68v5"]
+
+[sub_resource type="GDScript" id="GDScript_loq0u"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="Environment" id="Environment_omoun"]
 background_mode = 1
@@ -21,18 +35,19 @@ shader_parameter/direction = Vector2(1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8eg0"]
 shader = ExtResource("4_8bnck")
-shader_parameter/blur_radius = 0.219
-shader_parameter/blur_amount = 0.815
-shader_parameter/blur_inner = 0.396
-shader_parameter/blur_outer = 0.484
-shader_parameter/scroll_speed = 0.1
+shader_parameter/blur_radius = 0.524
+shader_parameter/blur_amount = 1.88
+shader_parameter/blur_inner = 0.655
+shader_parameter/blur_outer = 0.609
+shader_parameter/scroll_speed = 0.2
 shader_parameter/direction = Vector2(1, 0)
-shader_parameter/noise_texture = ExtResource("5_8ngil")
+shader_parameter/noise_texture = ExtResource("5_i68v5")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_askw0"]
 size = Vector2(128, 128)
 
 [node name="Test" type="Node2D"]
+script = SubResource("GDScript_loq0u")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_omoun")
