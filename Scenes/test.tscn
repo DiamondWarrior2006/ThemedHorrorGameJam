@@ -65,14 +65,23 @@ tween_resource = SubResource("Resource_tsrxs")
 tween_on_load = false
 follow_offset = Vector2(22.08, 0)
 
+<<<<<<< HEAD
 [node name="Charlos" parent="." node_paths=PackedStringArray("pcam") groups=["player"] instance=ExtResource("1_knw8j")]
 position = Vector2(176, 209)
 pcam = NodePath("../PhantomCamera2D")
 metadata/_edit_group_ = true
+=======
+[node name="Charlos" parent="." instance=ExtResource("1_knw8j")]
+position = Vector2(110, 203)
+script = ExtResource("2_33jkj")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Charlos"]
+[node name="Camera2D2" type="Camera2D" parent="Charlos"]
+position_smoothing_enabled = true
+>>>>>>> refs/remotes/origin/master
 
-[node name="ColorRect" type="ColorRect" parent="Charlos/CanvasLayer"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="Charlos"]
+
+[node name="ColorRect" type="ColorRect" parent="Charlos/CanvasLayer2"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_g8eg0")
 anchors_preset = -1
@@ -86,6 +95,9 @@ offset_right = 621.776
 offset_bottom = 433.624
 tooltip_text = "This is Our Vignette"
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="FmodListener2D2" type="FmodListener2D" parent="Charlos"]
 
 [node name="Camera2D" type="Camera2D" parent="Charlos"]
 position = Vector2(22.08, 0)
@@ -104,6 +116,7 @@ texture = ExtResource("3_uiddj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_askw0")
 
+<<<<<<< HEAD
 [node name="Sign" parent="." instance=ExtResource("9_aki4r")]
 position = Vector2(773, 217)
 
@@ -121,3 +134,8 @@ shape = SubResource("RectangleShape2D_f6srx")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+=======
+[node name="FMOD Nodes" type="Node" parent="."]
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="FMOD Nodes"]
+>>>>>>> refs/remotes/origin/master
