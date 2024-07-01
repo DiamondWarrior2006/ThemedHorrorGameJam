@@ -70,6 +70,10 @@ save/encryption_on_exports_only=true
 text/autocolor_names=true
 text/autopauses={}
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")

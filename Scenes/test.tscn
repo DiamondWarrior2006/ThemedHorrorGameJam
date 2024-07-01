@@ -1,141 +1,68 @@
-[gd_scene load_steps=16 format=3 uid="uid://w3xkta40fn1o"]
+[gd_scene load_steps=11 format=3 uid="uid://15whoces4nix"]
 
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_i0can"]
-[ext_resource type="PackedScene" uid="uid://kwokyvrce4jv" path="res://Instances/charlos.tscn" id="1_knw8j"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_8dlvx"]
-[ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="3_uiddj"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_vkok4"]
-[ext_resource type="Shader" path="res://Shaders/SpookyVignette.gdshader" id="4_8bnck"]
-[ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://Shaders/tilingvoronoi_2.png" id="5_i68v5"]
-[ext_resource type="PackedScene" uid="uid://hxoi1d8yq3jg" path="res://Instances/sign.tscn" id="9_aki4r"]
-[ext_resource type="Script" path="res://Scripts/Cam_test.gd" id="10_edryb"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_t01nt"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_cr4vy"]
+[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Instances/misha.tscn" id="3_yd4fl"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_002tr"]
+[ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="5_bf3nl"]
+[ext_resource type="Shader" path="res://Shaders/SpookyVignette.gdshader" id="5_qg5y1"]
+[ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://Shaders/tilingvoronoi_2.png" id="6_j3tqy"]
 
-[sub_resource type="GDScript" id="GDScript_loq0u"]
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
-
-[sub_resource type="Environment" id="Environment_omoun"]
-background_mode = 1
-background_energy_multiplier = 1.93
-
-[sub_resource type="Resource" id="Resource_tsrxs"]
-script = ExtResource("3_vkok4")
+[sub_resource type="Resource" id="Resource_aj55d"]
+script = ExtResource("2_cr4vy")
 duration = 1.0
 transition = 0
 ease = 2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g8eg0"]
-shader = ExtResource("4_8bnck")
-shader_parameter/blur_radius = 0.524
-shader_parameter/blur_amount = 1.88
-shader_parameter/blur_inner = 0.655
-shader_parameter/blur_outer = 0.609
-shader_parameter/scroll_speed = 0.2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu3yr"]
+shader = ExtResource("5_qg5y1")
+shader_parameter/blur_radius = 0.31
+shader_parameter/blur_amount = 1.0
+shader_parameter/blur_inner = 0.6
+shader_parameter/blur_outer = 0.66
+shader_parameter/scroll_speed = 0.405
 shader_parameter/direction = Vector2(1, 0)
-shader_parameter/noise_texture = ExtResource("5_i68v5")
+shader_parameter/noise_texture = ExtResource("6_j3tqy")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_askw0"]
-size = Vector2(128, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6srx"]
-size = Vector2(322, 292)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbrr6"]
+size = Vector2(1527, 88)
 
 [node name="Test" type="Node2D"]
-script = SubResource("GDScript_loq0u")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_omoun")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(198.08, 209)
-script = ExtResource("2_8dlvx")
-follow_mode = 2
-follow_target = NodePath("../Charlos")
-tween_resource = SubResource("Resource_tsrxs")
-tween_on_load = false
-follow_offset = Vector2(22.08, 0)
+position = Vector2(137, 249)
+script = ExtResource("1_t01nt")
+follow_mode = 1
+follow_target = NodePath("../Misha")
+tween_resource = SubResource("Resource_aj55d")
 
-<<<<<<< HEAD
-[node name="Charlos" parent="." node_paths=PackedStringArray("pcam") groups=["player"] instance=ExtResource("1_knw8j")]
-position = Vector2(176, 209)
+[node name="Misha" parent="." node_paths=PackedStringArray("pcam") instance=ExtResource("3_yd4fl")]
+position = Vector2(137, 249)
 pcam = NodePath("../PhantomCamera2D")
-metadata/_edit_group_ = true
-=======
-[node name="Charlos" parent="." instance=ExtResource("1_knw8j")]
-position = Vector2(110, 203)
-script = ExtResource("2_33jkj")
 
-[node name="Camera2D2" type="Camera2D" parent="Charlos"]
-position_smoothing_enabled = true
->>>>>>> refs/remotes/origin/master
+[node name="Camera2D" type="Camera2D" parent="Misha"]
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="Charlos"]
+[node name="PhantomCameraHost" type="Node" parent="Misha/Camera2D"]
+script = ExtResource("4_002tr")
 
-[node name="ColorRect" type="ColorRect" parent="Charlos/CanvasLayer2"]
-texture_repeat = 2
-material = SubResource("ShaderMaterial_g8eg0")
-anchors_preset = -1
-anchor_left = 0.462
-anchor_top = 0.337
-anchor_right = 0.462
-anchor_bottom = 0.337
-offset_left = -530.224
-offset_top = -219.376
-offset_right = 621.776
-offset_bottom = 433.624
-tooltip_text = "This is Our Vignette"
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
+[node name="CanvasLayer" type="CanvasLayer" parent="Misha"]
 
-[node name="FmodListener2D2" type="FmodListener2D" parent="Charlos"]
-
-[node name="Camera2D" type="Camera2D" parent="Charlos"]
-position = Vector2(22.08, 0)
-
-[node name="PhantomCameraHost" type="Node" parent="Charlos/Camera2D"]
-script = ExtResource("1_i0can")
+[node name="ColorRect" type="ColorRect" parent="Misha/CanvasLayer"]
+material = SubResource("ShaderMaterial_qu3yr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(531, 278)
-scale = Vector2(9.075, 0.435)
+position = Vector2(579, 376)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-texture = ExtResource("3_uiddj")
+scale = Vector2(11.93, 0.685)
+texture = ExtResource("5_bf3nl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_askw0")
-
-<<<<<<< HEAD
-[node name="Sign" parent="." instance=ExtResource("9_aki4r")]
-position = Vector2(773, 217)
-
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("player", "sign")]
-position = Vector2(773, 217)
-script = ExtResource("10_edryb")
-player = NodePath("../Charlos")
-sign = NodePath("../Sign")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-z_index = -1
-position = Vector2(-1, -112)
-shape = SubResource("RectangleShape2D_f6srx")
-
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
-=======
-[node name="FMOD Nodes" type="Node" parent="."]
-
-[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="FMOD Nodes"]
->>>>>>> refs/remotes/origin/master
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_wbrr6")
