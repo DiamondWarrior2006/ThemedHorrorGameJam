@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var pcam = PhantomCamera2D
 
 const SPEED = 200.0
 const ACCELERATION = 600.0

@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://w3xkta40fn1o"]
+[gd_scene load_steps=16 format=3 uid="uid://w3xkta40fn1o"]
 
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_i0can"]
 [ext_resource type="PackedScene" uid="uid://kwokyvrce4jv" path="res://Instances/charlos.tscn" id="1_knw8j"]
-[ext_resource type="Script" path="res://Scripts/charlos.gd" id="2_33jkj"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_8dlvx"]
 [ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="3_uiddj"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_vkok4"]
 [ext_resource type="Shader" path="res://Shaders/SpookyVignette.gdshader" id="4_8bnck"]
 [ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://Shaders/tilingvoronoi_2.png" id="5_i68v5"]
+[ext_resource type="PackedScene" uid="uid://hxoi1d8yq3jg" path="res://Instances/sign.tscn" id="9_aki4r"]
+[ext_resource type="Script" path="res://Scripts/Cam_test.gd" id="10_edryb"]
 
 [sub_resource type="GDScript" id="GDScript_loq0u"]
 script/source = "extends Node2D
@@ -24,14 +28,11 @@ func _process(delta):
 background_mode = 1
 background_energy_multiplier = 1.93
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r50pd"]
-shader = ExtResource("4_8bnck")
-shader_parameter/blur_radius = 0.2
-shader_parameter/blur_amount = 1.0
-shader_parameter/blur_inner = 0.6
-shader_parameter/blur_outer = 0.66
-shader_parameter/scroll_speed = 0.1
-shader_parameter/direction = Vector2(1, 0)
+[sub_resource type="Resource" id="Resource_tsrxs"]
+script = ExtResource("3_vkok4")
+duration = 1.0
+transition = 0
+ease = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8eg0"]
 shader = ExtResource("4_8bnck")
@@ -46,26 +47,28 @@ shader_parameter/noise_texture = ExtResource("5_i68v5")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_askw0"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6srx"]
+size = Vector2(322, 292)
+
 [node name="Test" type="Node2D"]
 script = SubResource("GDScript_loq0u")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_omoun")
 
-[node name="Vignette Test" type="Sprite2D" parent="."]
-visible = false
-texture_repeat = 2
-material = SubResource("ShaderMaterial_r50pd")
-position = Vector2(494, 97)
-scale = Vector2(6.19531, 2.21875)
-texture = ExtResource("3_uiddj")
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(198.08, 209)
+script = ExtResource("2_8dlvx")
+follow_mode = 2
+follow_target = NodePath("../Charlos")
+tween_resource = SubResource("Resource_tsrxs")
+tween_on_load = false
+follow_offset = Vector2(22.08, 0)
 
-[node name="Charlos" parent="." instance=ExtResource("1_knw8j")]
-position = Vector2(110, 203)
-script = ExtResource("2_33jkj")
-
-[node name="Camera2D" type="Camera2D" parent="Charlos"]
-position_smoothing_enabled = true
+[node name="Charlos" parent="." node_paths=PackedStringArray("pcam") groups=["player"] instance=ExtResource("1_knw8j")]
+position = Vector2(176, 209)
+pcam = NodePath("../PhantomCamera2D")
+metadata/_edit_group_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Charlos"]
 
@@ -84,6 +87,12 @@ offset_bottom = 433.624
 tooltip_text = "This is Our Vignette"
 color = Color(0, 0, 0, 1)
 
+[node name="Camera2D" type="Camera2D" parent="Charlos"]
+position = Vector2(22.08, 0)
+
+[node name="PhantomCameraHost" type="Node" parent="Charlos/Camera2D"]
+script = ExtResource("1_i0can")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(531, 278)
 scale = Vector2(9.075, 0.435)
@@ -94,3 +103,21 @@ texture = ExtResource("3_uiddj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_askw0")
+
+[node name="Sign" parent="." instance=ExtResource("9_aki4r")]
+position = Vector2(773, 217)
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("player", "sign")]
+position = Vector2(773, 217)
+script = ExtResource("10_edryb")
+player = NodePath("../Charlos")
+sign = NodePath("../Sign")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = -1
+position = Vector2(-1, -112)
+shape = SubResource("RectangleShape2D_f6srx")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

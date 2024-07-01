@@ -1,0 +1,5 @@
+[style name="Default"]
+This is a test!
+"Mikhail Voynarovsky": My name is Misha and this is also a test!
+[signal arg="_Test_Finished"]
+[end_timeline]
