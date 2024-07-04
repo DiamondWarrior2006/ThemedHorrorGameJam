@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://15whoces4nix"]
+[gd_scene load_steps=15 format=3 uid="uid://15whoces4nix"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_t01nt"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_cr4vy"]
@@ -7,12 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="5_bf3nl"]
 [ext_resource type="Shader" path="res://Shaders/SpookyVignette.gdshader" id="5_qg5y1"]
 [ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://Shaders/tilingvoronoi_2.png" id="6_j3tqy"]
+[ext_resource type="PackedScene" uid="uid://hxoi1d8yq3jg" path="res://Instances/sign.tscn" id="8_10m0m"]
+[ext_resource type="Script" path="res://Scripts/Cam_test.gd" id="9_opb3l"]
 
 [sub_resource type="Resource" id="Resource_aj55d"]
 script = ExtResource("2_cr4vy")
-duration = 1.0
-transition = 0
-ease = 2
+duration = 0.6
+transition = 3
+ease = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qu3yr"]
 shader = ExtResource("5_qg5y1")
@@ -27,16 +29,27 @@ shader_parameter/noise_texture = ExtResource("6_j3tqy")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbrr6"]
 size = Vector2(1527, 88)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uetjm"]
+size = Vector2(303, 186)
+
+[sub_resource type="Resource" id="Resource_6nykm"]
+script = ExtResource("2_cr4vy")
+duration = 0.4
+transition = 3
+ease = 2
+
 [node name="Test" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 position = Vector2(137, 249)
 script = ExtResource("1_t01nt")
+priority = 5
 follow_mode = 1
 follow_target = NodePath("../Misha")
 tween_resource = SubResource("Resource_aj55d")
+draw_limits = true
 
-[node name="Misha" parent="." node_paths=PackedStringArray("pcam") instance=ExtResource("3_yd4fl")]
+[node name="Misha" parent="." node_paths=PackedStringArray("pcam") groups=["player"] instance=ExtResource("3_yd4fl")]
 position = Vector2(137, 249)
 pcam = NodePath("../PhantomCamera2D")
 
@@ -66,3 +79,25 @@ texture = ExtResource("5_bf3nl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_wbrr6")
+
+[node name="Sign" parent="." instance=ExtResource("8_10m0m")]
+position = Vector2(799, 298)
+
+[node name="Area2D" type="Area2D" parent="Sign" node_paths=PackedStringArray("pcam")]
+script = ExtResource("9_opb3l")
+pcam = NodePath("PhantomCamera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign/Area2D"]
+position = Vector2(-0.5, -59)
+shape = SubResource("RectangleShape2D_uetjm")
+
+[node name="PhantomCamera2D" type="Node2D" parent="Sign/Area2D"]
+script = ExtResource("1_t01nt")
+zoom = Vector2(2, 2)
+tween_resource = SubResource("Resource_6nykm")
+draw_limits = true
+
+[connection signal="body_entered" from="Sign/Area2D" to="Sign/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Sign/Area2D" to="Sign/Area2D" method="_on_body_exited"]
+
+[editable path="Sign"]

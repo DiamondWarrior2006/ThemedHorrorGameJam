@@ -1,7 +1,6 @@
 extends Area2D
 
-@export var player = CharacterBody2D
-@export var sign = Area2D
+@export var pcam : PhantomCamera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,14 +13,10 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.name == "Charlos":
-		var pcam = body.pcam
-		pcam.set_follow_target(sign)
-		pcam.set_zoom(Vector2(2, 2))
+	if body.name == "Misha":
+		pcam.set_priority(20)
 
 
 func _on_body_exited(body):
-	if body.name == "Charlos":
-		var pcam = body.pcam
-		pcam.set_follow_target(player)
-		pcam.set_zoom(Vector2(1, 1))
+	if body.name == "Misha":
+		pcam.set_priority(0)
