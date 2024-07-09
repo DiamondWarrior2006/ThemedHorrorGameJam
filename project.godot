@@ -36,12 +36,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 FmodManager="*res://addons/fmod/FmodManager.gd"
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
 directories/dch_directory={
+"Jan Brotz": "res://Dialogic/Charaters/Jan Brotz.dch",
 "Mikhail Voynarovsky": "res://Dialogic/Charaters/Mikhail Voynarovsky.dch"
 }
 directories/dtl_directory={
@@ -55,7 +55,7 @@ text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
 text/advance_delay=0.1
-text/autoadvance_per_character_delay=0.1
+text/autoadvance_per_character_delay=0.2
 text/autoadvance_ignored_characters_enabled=true
 animations/join_default_length=0.5
 animations/leave_default_length=0.5

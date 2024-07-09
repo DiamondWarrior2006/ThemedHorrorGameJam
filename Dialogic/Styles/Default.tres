@@ -33,7 +33,7 @@ script = ExtResource("2_v16g5")
 scene = ExtResource("5_malmr")
 overrides = {
 "text_size": "21.0",
-"typing_sounds_enabled": "false"
+"typing_sounds_mode": "2"
 }
 
 [sub_resource type="Resource" id="Resource_fqsvw"]
@@ -61,4 +61,4 @@ script = ExtResource("10_4komg")
 name = "Default"
 base_overrides = {}
 layers = Array[ExtResource("2_v16g5")]([SubResource("Resource_wyrcm"), SubResource("Resource_hq1jp"), SubResource("Resource_61rgw"), SubResource("Resource_3kymc"), SubResource("Resource_fqsvw"), SubResource("Resource_fpcnv"), SubResource("Resource_gjp17"), SubResource("Resource_7d0rr")])
-metadata/_latest_layer = 3
+metadata/_latest_layer = 4
