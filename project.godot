@@ -42,7 +42,8 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={
 "Jan Brotz": "res://Dialogic/Charaters/Jan Brotz.dch",
-"Mikhail Voynarovsky": "res://Dialogic/Charaters/Mikhail Voynarovsky.dch"
+"Mikhail Voynarovsky": "res://Dialogic/Charaters/Mikhail Voynarovsky.dch",
+"Valya Stepankova": "res://Dialogic/Charaters/Valya Stepankova.dch"
 }
 directories/dtl_directory={
 "Test": "res://Dialogic/Timelines/Test.dtl"

@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var pcam : PhantomCamera2D
 
+@export var player_flipped = false
+
 @onready var spriteAnim = $AnimatedSprite2D
 
 const SPEED = 200.0
@@ -17,16 +19,23 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _physics_process(delta):
+	player_movement(delta)
+	move_and_slide()
+	player_animation()
+
+func player_movement(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		is_jumping = false
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		is_jumping = true
-
+	if is_on_floor():
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY
+	else:
+		if Input.is_action_just_released("jump") and velocity.y < JUMP_VELOCITY / 2:
+			velocity.y = JUMP_VELOCITY / 2
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
@@ -37,17 +46,29 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 		is_walking = false
 	
+	# Checking if player is flipped
 	if direction == 1:
-		spriteAnim.flip_h = false
+		player_flipped = false
 	elif direction == -1:
-		spriteAnim.flip_h = true
+		player_flipped = true
 	
-
-	move_and_slide()
-	player_animation()
+	if not is_on_floor():
+		is_jumping = true
+	else:
+		is_jumping = false
 
 func player_animation():
-	if is_walking == true:
-		spriteAnim.play("walking")
+	if player_flipped == false:
+		if is_walking == true:
+			spriteAnim.play("walkingR")
+		else:
+			spriteAnim.play("idleR")
+		if is_jumping == true:
+			spriteAnim.play("jumpingR")
 	else:
-		spriteAnim.play("idle")
+		if is_walking == true:
+			spriteAnim.play("walkingL")
+		else:
+			spriteAnim.play("idleL")
+		if is_jumping == true:
+			spriteAnim.play("jumpingL")
