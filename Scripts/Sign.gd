@@ -9,6 +9,8 @@ func _process(delta):
 			if Dialogic.current_timeline == null && is_talking == false:
 				Dialogic.start("Test")
 				is_talking = true
+			elif Dialogic.current_timeline == null && is_talking == true:
+				is_talking = false
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):

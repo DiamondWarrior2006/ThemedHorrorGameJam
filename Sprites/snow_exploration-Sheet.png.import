@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s8hiv0n7yrol"
-path="res://.godot/imported/Misha-Sheet2.png-62e172cde9693021a202bb106d13332d.ctex"
+uid="uid://c5vctix722k5n"
+path="res://.godot/imported/snow_exploration-Sheet.png-d1af855eb003e512d256863676970874.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Misha-Sheet2.png"
-dest_files=["res://.godot/imported/Misha-Sheet2.png-62e172cde9693021a202bb106d13332d.ctex"]
+source_file="res://Sprites/snow_exploration-Sheet.png"
+dest_files=["res://.godot/imported/snow_exploration-Sheet.png-d1af855eb003e512d256863676970874.ctex"]
 
 [params]
 
