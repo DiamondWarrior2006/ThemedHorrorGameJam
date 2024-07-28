@@ -1,0 +1,134 @@
+[gd_scene load_steps=16 format=3 uid="uid://cvxi7xaaa4q32"]
+
+[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Instances/misha.tscn" id="1_ie64x"]
+[ext_resource type="Script" path="res://Scripts/cabin.gd" id="1_qxd5m"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_4wla8"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_nama7"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_7oxfh"]
+[ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="5_rgsmc"]
+[ext_resource type="Script" path="res://Scripts/Door.gd" id="6_1wnkl"]
+[ext_resource type="Script" path="res://Scripts/Cam_test.gd" id="7_fpvcm"]
+[ext_resource type="PackedScene" uid="uid://ctxoqmus26050" path="res://Scenes/forest_1.tscn" id="8_og3up"]
+
+[sub_resource type="Resource" id="Resource_gjgeu"]
+script = ExtResource("3_nama7")
+duration = 1.0
+transition = 1
+ease = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5qqj"]
+size = Vector2(1379, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dw8r"]
+size = Vector2(127, 130)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yevei"]
+radius = 235.85
+
+[sub_resource type="Resource" id="Resource_pea3n"]
+script = ExtResource("3_nama7")
+duration = 0.6
+transition = 1
+ease = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vntij"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(700, 1, 1)
+direction = Vector3(-1, 1, 0)
+spread = 0.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+angular_velocity_min = -53.6
+angular_velocity_max = 35.55
+radial_velocity_min = -15.3
+radial_velocity_max = 26.25
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 639.45
+linear_accel_max = 639.45
+scale_min = 3.95
+scale_max = 11.0
+
+[node name="Cabin" type="Node2D"]
+script = ExtResource("1_qxd5m")
+
+[node name="Misha" parent="." instance=ExtResource("1_ie64x")]
+position = Vector2(446, 424)
+can_jump = false
+
+[node name="PhantomCamera2D" type="Node2D" parent="Misha" node_paths=PackedStringArray("follow_target")]
+position = Vector2(0, -113.231)
+script = ExtResource("2_4wla8")
+priority = 5
+follow_mode = 2
+follow_target = NodePath("..")
+zoom = Vector2(1.3, 1.3)
+tween_resource = SubResource("Resource_gjgeu")
+draw_limits = true
+limit_left = 0
+limit_bottom = 560
+
+[node name="Camera2D" type="Camera2D" parent="Misha"]
+position = Vector2(0, -113.231)
+zoom = Vector2(1.3, 1.3)
+limit_left = 0
+limit_bottom = 560
+
+[node name="PhantomCameraHost" type="Node" parent="Misha/Camera2D"]
+script = ExtResource("4_7oxfh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(611, 520)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(10.77, 0.675)
+texture = ExtResource("5_rgsmc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.5, -0.5)
+shape = SubResource("RectangleShape2D_s5qqj")
+
+[node name="Door" type="Area2D" parent="."]
+z_index = -3
+position = Vector2(1013, 412)
+script = ExtResource("6_1wnkl")
+sceneTo = ExtResource("8_og3up")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+texture = ExtResource("5_rgsmc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_8dw8r")
+
+[node name="Area2D" type="Area2D" parent="Door" node_paths=PackedStringArray("pcam")]
+script = ExtResource("7_fpvcm")
+pcam = NodePath("PhantomCamera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
+shape = SubResource("CircleShape2D_yevei")
+
+[node name="PhantomCamera2D" type="Node2D" parent="Door/Area2D"]
+position = Vector2(0, -14)
+script = ExtResource("2_4wla8")
+follow_mode = 1
+zoom = Vector2(2, 2)
+tween_resource = SubResource("Resource_pea3n")
+draw_limits = true
+limit_right = 1325
+limit_bottom = 560
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -4
+position = Vector2(707, 0)
+amount = 33
+process_material = SubResource("ParticleProcessMaterial_vntij")
+lifetime = 1.5
+visibility_rect = Rect2(-800, -300, 1600, 600)
+
+[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]
+[connection signal="body_entered" from="Door/Area2D" to="Door/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Door/Area2D" to="Door/Area2D" method="_on_body_exited"]

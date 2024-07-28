@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var sceneTo : String
+@export var sceneTo : PackedScene
 
 var can_open = false
 
@@ -15,7 +15,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("interact"):
 			FadeTransition.transition()
 			await FadeTransition.on_transition_finished
-			get_tree().change_scene_to_file(sceneTo)
+			get_tree().change_scene_to_packed(sceneTo)
 
 
 func _on_body_entered(body):

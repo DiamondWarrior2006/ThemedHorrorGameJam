@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://55ysqol81qk3"]
 
-[ext_resource type="Script" path="res://Scripts/fade transition.gd" id="1_lcpll"]
+[ext_resource type="Script" path="res://Scripts/fade transition.gd" id="1_qugo6"]
 
 [sub_resource type="Animation" id="Animation_1koea"]
 resource_name = "Fade_In"
@@ -57,7 +57,7 @@ _data = {
 }
 
 [node name="fade transition" type="CanvasLayer"]
-script = ExtResource("1_lcpll")
+script = ExtResource("1_qugo6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

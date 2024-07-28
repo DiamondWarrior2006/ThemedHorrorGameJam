@@ -19,3 +19,7 @@ func _on_animation_finished(anim_name):
 func transition():
 	color_rect.show()
 	animation_player.play("Fade_In")
+
+func fade_out():
+	color_rect.show()
+	animation_player.play("Fade_Out")

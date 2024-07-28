@@ -29,29 +29,32 @@ DSP/dsp_buffer_count=4
 [application]
 
 config/name="HorrorGameJam"
-run/main_scene="res://Scenes/test.tscn"
+run/main_scene="res://Scenes/cabin.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 FmodManager="*res://addons/fmod/FmodManager.gd"
+FadeTransition="*res://Instances/fade_transition.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
-FadeTransition="*res://Scenes/fade_transition.tscn"
 
 [dialogic]
 
 directories/dch_directory={
+"Iosif Sudilenkov": "res://Dialogic/Charaters/Iosif Sudilenkov.dch",
 "Jan Brotz": "res://Dialogic/Charaters/Jan Brotz.dch",
 "Mikhail Voynarovsky": "res://Dialogic/Charaters/Mikhail Voynarovsky.dch",
-"Valya Stepankova": "res://Dialogic/Charaters/Valya Stepankova.dch"
+"Valya Stepankova": "res://Dialogic/Charaters/Valya Stepankova.dch",
+"Vladim Voynarovsky": "res://Dialogic/Charaters/Vladim Voynarovsky.dch"
 }
 directories/dtl_directory={
+"Letter": "res://Dialogic/Timelines/Letter.dtl",
 "Test": "res://Dialogic/Timelines/Test.dtl"
 }
 glossary/default_case_sensitive=true
-layout/style_list=["res://Dialogic/Styles/Default.tres"]
-layout/default_style="res://Dialogic/Styles/Default.tres"
+layout/style_list=["res://Dialogic/Styles/Default.tres", "res://Dialogic/Styles/Letter.tres", "res://Dialogic/Styles/Intro.tres"]
+layout/default_style="res://Dialogic/Styles/Intro.tres"
 variables={}
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -71,6 +74,7 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autocolor_names=true
 text/autopauses={}
+glossary/glossary_files=[]
 
 [display]
 
@@ -130,3 +134,7 @@ crouch={
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://Dialogs/Test.dialogue")
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.827451, 0.847059, 0.862745, 1)
