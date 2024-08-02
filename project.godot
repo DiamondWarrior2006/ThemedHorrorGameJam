@@ -36,17 +36,22 @@ config/icon="res://icon.svg"
 [autoload]
 
 FmodManager="*res://addons/fmod/FmodManager.gd"
-FadeTransition="*res://Instances/fade_transition.tscn"
+FadeTransition="*res://Prefabs/fade_transition.tscn"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+AudioManager="*res://Scenes/Global/AudioManager.tscn"
+Ui="*res://Scenes/Global/UI.tscn"
+GameManager="*res://Scenes/Global/GameManager.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
 directories/dch_directory={
-"Iosif Sudilenkov": "res://Dialogic/Charaters/Iosif Sudilenkov.dch",
-"Jan Brotz": "res://Dialogic/Charaters/Jan Brotz.dch",
-"Mikhail Voynarovsky": "res://Dialogic/Charaters/Mikhail Voynarovsky.dch",
-"Valya Stepankova": "res://Dialogic/Charaters/Valya Stepankova.dch",
-"Vladim Voynarovsky": "res://Dialogic/Charaters/Vladim Voynarovsky.dch"
+"Characters/Valya Stepankova": "res://Dialogic/Characters/Valya Stepankova.dch",
+"Characters/Vladim Voynarovsky": "res://Dialogic/Characters/Vladim Voynarovsky.dch",
+"Iosif Sudilenkov": "res://Dialogic/Characters/Iosif Sudilenkov.dch",
+"Jan Brotz": "res://Dialogic/Characters/Jan Brotz.dch",
+"Mikhail Voynarovsky": "res://Dialogic/Characters/Mikhail Voynarovsky.dch",
+"Misha": "res://Dialogic/Characters/Misha.dch"
 }
 directories/dtl_directory={
 "Letter": "res://Dialogic/Timelines/Letter.dtl",

@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcoxsfmhrftw7"]
+[gd_scene load_steps=13 format=3 uid="uid://b6cpavfuffpyu"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_vsir2"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_qufu5"]
 [ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="3_411mo"]
-[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Instances/misha.tscn" id="4_pv1u4"]
+[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Prefabs/misha.tscn" id="4_pv1u4"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_a1ls8"]
 [ext_resource type="Script" path="res://Scripts/Door.gd" id="6_lgpvr"]
 [ext_resource type="Script" path="res://Scripts/Cam_test.gd" id="7_uwpyg"]
@@ -61,6 +61,9 @@ pcam = NodePath("../PhantomCamera2D")
 player_flipped = true
 
 [node name="Camera2D" type="Camera2D" parent="Misha"]
+position = Vector2(-360, 0)
+limit_left = 0
+limit_right = 1343
 
 [node name="PhantomCameraHost" type="Node" parent="Misha/Camera2D"]
 script = ExtResource("5_a1ls8")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://3ox3cg2bcf53"]
+
+[ext_resource type="AudioStream" uid="uid://c4exulbvy6xcy" path="res://Build/Desktop/Forest.wav" id="1_r8qvy"]
+[ext_resource type="Script" path="res://Scenes/Global/AudioManager.gd" id="2_yr6st"]
+
+[node name="AudioManager" type="AudioStreamPlayer"]
+stream = ExtResource("1_r8qvy")
+volume_db = -20.0
+bus = &"Music"
+script = ExtResource("2_yr6st")

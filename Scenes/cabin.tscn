@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cvxi7xaaa4q32"]
 
-[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Instances/misha.tscn" id="1_ie64x"]
+[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Prefabs/misha.tscn" id="1_ie64x"]
 [ext_resource type="Script" path="res://Scripts/cabin.gd" id="1_qxd5m"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_4wla8"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_nama7"]

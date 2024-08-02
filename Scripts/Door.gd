@@ -1,4 +1,5 @@
 extends Area2D
+#TODO trigger Scene swaps through global Game Manager
 
 @export var sceneTo : PackedScene
 
@@ -10,12 +11,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if can_open == true:
 		if Input.is_action_just_pressed("interact"):
-			FadeTransition.transition()
-			await FadeTransition.on_transition_finished
-			get_tree().change_scene_to_packed(sceneTo)
+			GameManager.swapScene(sceneTo)
 
 
 func _on_body_entered(body):

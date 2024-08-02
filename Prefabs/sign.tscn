@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://hxoi1d8yq3jg"]
+
+[ext_resource type="Script" path="res://Scripts/Sign.gd" id="1_vp5jc"]
+[ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="3_ayg45"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2ilt"]
+radius = 150.013
+
+[node name="Sign" type="Area2D"]
+position = Vector2(716, 218)
+script = ExtResource("1_vp5jc")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ayg45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d2ilt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

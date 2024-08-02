@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c0ag3cexd8pwi"]
 
-[ext_resource type="Texture2D" uid="uid://c5vctix722k5n" path="res://Sprites/snow_exploration-Sheet.png" id="1_443eh"]
+[ext_resource type="Texture2D" uid="uid://c5vctix722k5n" path="res://Sprites/Spritesheets/snow_exploration-Sheet.png" id="1_443eh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_er46w"]
 resource_name = "Snowy turrain"

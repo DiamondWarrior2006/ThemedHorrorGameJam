@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_d4i3i"]
 [ext_resource type="Texture2D" uid="uid://ddj5pamii8bsd" path="res://icon.svg" id="1_nrhdn"]
-[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Instances/misha.tscn" id="2_csf58"]
+[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Prefabs/misha.tscn" id="2_csf58"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_mei7k"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_vedc3"]
 [ext_resource type="Script" path="res://Scripts/Cam_test.gd" id="6_jn1kc"]

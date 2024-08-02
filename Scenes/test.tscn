@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_t01nt"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_cr4vy"]
-[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Instances/misha.tscn" id="3_yd4fl"]
+[ext_resource type="PackedScene" uid="uid://co0stf7rt812g" path="res://Prefabs/misha.tscn" id="3_yd4fl"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_002tr"]
 [ext_resource type="Shader" path="res://Shaders/SpookyVignette.gdshader" id="5_qg5y1"]
 [ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://Shaders/tilingvoronoi_2.png" id="6_j3tqy"]
-[ext_resource type="PackedScene" uid="uid://hxoi1d8yq3jg" path="res://Instances/sign.tscn" id="8_10m0m"]
+[ext_resource type="PackedScene" uid="uid://hxoi1d8yq3jg" path="res://Prefabs/sign.tscn" id="8_10m0m"]
 [ext_resource type="Script" path="res://Scripts/Cam_test.gd" id="9_opb3l"]
 [ext_resource type="TileSet" uid="uid://c0ag3cexd8pwi" path="res://Snow.tres" id="9_u7eoc"]
 
