@@ -1,8 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://blso7tpjfx1jn"]
+[gd_scene load_steps=8 format=3 uid="uid://cctuf6ig0dhlj"]
 
-[ext_resource type="PackedScene" uid="uid://cctuf6ig0dhlj" path="res://Scenes/Global/UIManager.tscn" id="1_llo4g"]
+[ext_resource type="Texture2D" uid="uid://dksblh0ajfbs5" path="res://Sprites/UI/background-export.png" id="1_06tnt"]
+[ext_resource type="Script" path="res://Scenes/Global/UIManager.gd" id="1_cn231"]
+[ext_resource type="Texture2D" uid="uid://cjnwh2eeqwv60" path="res://Sprites/UI/fill2-export.png" id="2_cdo4b"]
+[ext_resource type="Script" path="res://Scripts/SanityMeter.gd" id="3_8igdp"]
+[ext_resource type="Texture2D" uid="uid://ducvmiofwhbuq" path="res://Sprites/Portraits/MishaPortrait.png" id="4_oawqh"]
+[ext_resource type="FontFile" uid="uid://bedo6ftsurhk2" path="res://Fonts/Heartless.ttf" id="5_bvro6"]
 
-[node name="Ui" type="CanvasLayer"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hpih"]
 
-[node name="UiManager" parent="." instance=ExtResource("1_llo4g")]
+[node name="UiManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cn231")
+
+[node name="Sanity Bar" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 461.0
+offset_bottom = 153.0
 scale = Vector2(0.75, 0.75)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6hpih")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Sanity Bar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0464037
+anchor_top = -0.672087
+anchor_right = 1.53132
+anchor_bottom = 1.92954
+grow_horizontal = 2
+grow_vertical = 2
+value = 40.0
+texture_under = ExtResource("1_06tnt")
+texture_progress = ExtResource("2_cdo4b")
+tint_under = Color(0.666667, 0.372549, 0.67451, 1)
+tint_progress = Color(0.541176, 0.00392157, 0.819608, 1)
+script = ExtResource("3_8igdp")
+metadata/_edit_use_anchors_ = true
+
+[node name="SanityText" type="RichTextLabel" parent="Sanity Bar"]
+layout_mode = 0
+offset_left = 69.3333
+offset_top = 9.33333
+offset_right = 580.333
+offset_bottom = 192.333
+theme_override_colors/default_color = Color(0.45098, 0.658824, 0.298039, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/normal_font = ExtResource("5_bvro6")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[wave][center]S a n i t y[/center][/wave]"
+
+[node name="Avatar" type="TextureRect" parent="Sanity Bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -21.3333
+offset_top = -80.1667
+offset_right = 136.667
+offset_bottom = 77.8333
+grow_vertical = 2
+texture = ExtResource("4_oawqh")
+expand_mode = 1
+flip_h = true

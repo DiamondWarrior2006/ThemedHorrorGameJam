@@ -57,7 +57,7 @@ position = Vector2(446, 424)
 can_jump = false
 
 [node name="PhantomCamera2D" type="Node2D" parent="Misha" node_paths=PackedStringArray("follow_target")]
-position = Vector2(0, -113.231)
+position = Vector2(292.462, -279.385)
 script = ExtResource("2_4wla8")
 priority = 5
 follow_mode = 2
@@ -69,7 +69,7 @@ limit_left = 0
 limit_bottom = 560
 
 [node name="Camera2D" type="Camera2D" parent="Misha"]
-position = Vector2(0, -113.231)
+position = Vector2(292.462, -279.385)
 zoom = Vector2(1.3, 1.3)
 limit_left = 0
 limit_bottom = 560
@@ -111,7 +111,7 @@ pcam = NodePath("PhantomCamera2D")
 shape = SubResource("CircleShape2D_yevei")
 
 [node name="PhantomCamera2D" type="Node2D" parent="Door/Area2D"]
-position = Vector2(0, -14)
+position = Vector2(-168, -122)
 script = ExtResource("2_4wla8")
 follow_mode = 1
 zoom = Vector2(2, 2)

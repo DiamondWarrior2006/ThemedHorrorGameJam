@@ -39,7 +39,7 @@ FmodManager="*res://addons/fmod/FmodManager.gd"
 FadeTransition="*res://Prefabs/fade_transition.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 AudioManager="*res://Scenes/Global/AudioManager.tscn"
-Ui="*res://Scenes/Global/UI.tscn"
+Ui="*res://Scenes/Global/UIManager.tscn"
 GameManager="*res://Scenes/Global/GameManager.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
@@ -83,6 +83,9 @@ glossary/glossary_files=[]
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
@@ -142,4 +145,4 @@ locale/translations_pot_files=PackedStringArray("res://Dialogs/Test.dialogue")
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.827451, 0.847059, 0.862745, 1)
+environment/defaults/default_clear_color=Color(0.662745, 0.705882, 0.796078, 1)

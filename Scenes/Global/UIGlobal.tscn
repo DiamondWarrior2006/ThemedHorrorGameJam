@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnge7uskxdkd3"]
-
-[ext_resource type="PackedScene" uid="uid://cctuf6ig0dhlj" path="res://Scenes/Global/UIManager.tscn" id="1_uhv87"]
-
-[node name="UiGlobal" type="CanvasLayer"]
-
-[node name="UiManager" parent="." instance=ExtResource("1_uhv87")]

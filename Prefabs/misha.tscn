@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://co0stf7rt812g"]
+[gd_scene load_steps=32 format=3 uid="uid://co0stf7rt812g"]
 
 [ext_resource type="Script" path="res://Scripts/misha.gd" id="1_476t0"]
 [ext_resource type="Texture2D" uid="uid://dltupfr3t462q" path="res://Sprites/Spritesheets/MishaSH2.png" id="2_vpg5q"]
-[ext_resource type="Shape2D" uid="uid://bre5y23bu7c10" path="res://Collisions/misha_standing_cshape.tres" id="3_trq0h"]
+[ext_resource type="Shader" path="res://Shaders/SpookyVignette.gdshader" id="3_b2ue7"]
+[ext_resource type="Texture2D" uid="uid://cog1q525q4rlt" path="res://Shaders/tilingvoronoi_2.png" id="4_pv5at"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmw0c"]
 atlas = ExtResource("2_vpg5q")
@@ -237,6 +238,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rs7uy"]
+radius = 15.0
+height = 97.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mh7iv"]
+shader = ExtResource("3_b2ue7")
+shader_parameter/blur_radius = 0.31
+shader_parameter/blur_amount = 1.0
+shader_parameter/blur_inner = 0.6
+shader_parameter/blur_outer = 1.0
+shader_parameter/scroll_speed = 0.405
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/noise_texture = ExtResource("4_pv5at")
+
 [node name="Misha" type="CharacterBody2D"]
 script = ExtResource("1_476t0")
 
@@ -248,5 +263,24 @@ animation = &"idleR"
 autoplay = "idleR"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -0.5)
-shape = ExtResource("3_trq0h")
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_rs7uy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.14902, 0.152941, 0.160784)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_mh7iv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
